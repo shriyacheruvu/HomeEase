@@ -1,0 +1,65 @@
+<!-- 
+<div class="container-fluid">
+    <h1 class="text-center">Login</h1>
+    <form class="row justify-content-center" action="/login" method="post">
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email">
+          
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        
+          
+    </form>
+</div>-->
+
+
+
+{% extends 'index.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <h2 class="text-center mb-4">Login</h2>
+    <form action="/login" method="post">
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+          placeholder="Enter your email" 
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          required
+        >
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
+

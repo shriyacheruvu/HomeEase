@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block title %}Edit Service{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-5">
+    <h1 class="text-center">Add Service</h1>
+    <form class="row justify-content-center" action={{url_for('edit_service',id=service.id)}} method = "POST">
+        <div class="mb-3 col-7">
+            <label for="name" class="form-label">Service Name</label>
+            <input type="text" class="form-control" id="name" name = "name" value={{service.name}}>
+          </div>
+          <div class="mb-3 col-7">
+            <label for="description" class="form-label">Service Description</label>
+            <input type="text" class="form-control" id="description" name = "description" value={{service.description}}>
+          </div>
+          <div class="mb-3 col-7">
+            <label for="base_price" class="form-label">Price(in rupees)</label>
+            <input type="text" class="form-control" id="base_price" name = "base_price" value={{service.base_price}}>
+          </div>
+        <div class="col-7">
+            <button  type="submit" class="btn btn-primary">Edit</button>
+        </div>
+      </form>
+</div>
+{% endblock %}

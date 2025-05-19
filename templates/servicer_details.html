@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% block title %}SD {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <a href="{{ url_for('admin_dashboard') }}">
+        <button type="button" class="btn-close" aria-label="Close"></button>
+    </a>
+    <h1>Servicer Details</h1>
+    <table class="table">
+        <tr>
+            <th>Name:</th>
+            <td>{{ servicer.user_servicer.name }}</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{{ servicer.user_servicer.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Service:</th>
+            <td>{{ servicer.service.name }}</td>
+        </tr>
+        
+        <tr>
+            <th>Address:</th>
+            <td>{{ servicer.user_servicer.address }}</td>
+        </tr>
+        <tr>
+            <th>State:</th>
+            <td>{{ servicer.user_servicer.state }}</td>
+        </tr>
+        <tr>
+            <th>Pincode:</th>
+            <td>{{ servicer.user_servicer.pincode }}</td>
+        </tr>
+        <tr>
+            <th>Phone:</th>
+            <td>{{ servicer.user_servicer.phone or 'N/A' }}</td>
+        </tr>
+        <tr>
+            <th>Experience:</th>
+            <td>{{ servicer.experience }}</td>
+        </tr>
+        <tr>
+            <th>Document:</th>
+            <td><a href="{{ url_for('static', filename=servicer.doc_path) }}" target="_blank">Document</a></td>
+        </tr>
+        <tr>
+            <th>Verification Status:</th>
+            <td>
+                {%if servicer.ver_doc=='0' %}
+                    Pending
+                {% else %}
+                    {{servicer.ver_doc}}
+                {% endif%}
+            </td>
+        </tr>
+    </table>
+
+    
+    <form method="POST">
+        {% if servicer.ver_doc == '0' %}
+            <button type="submit" name="action" value="approve" class="btn btn-success">Approve</button>
+            <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+        {% elif servicer.ver_doc == 'Approved' %}
+            <button type="submit" name="action" value="block" class="btn btn-danger">Block</button>
+        {% elif servicer.ver_doc == 'Rejected' %}
+            <p>This servicer was rejected.</p>
+        {% elif servicer.ver_doc == 'Blocked' %}
+          <button type="submit" name="action" value="unblock" class="btn btn-primary">Unblock</button>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}Add Service Request{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Add Service Request</h1>
+    <form action="{{ url_for('add_service_request') }}" method="POST">
+        <div class="mb-3">
+            <label for="service_id" class="form-label">Select Service</label>
+            <select id="service_id" name="service_id" class="form-select">
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Request</button>
+    </form>
+</div>
+{% endblock %}

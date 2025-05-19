@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block title %} Home - Grocery Store {% endblock %}
+
+{% block body %}
+<div>
+    {% if not session['user_email'] %}
+    <h1 class="text-center">Welcome to HomeEase!</h1>
+    <div style="text-align: center;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjkxB7TQCIB_f5Cja0yP49e0YqFQlmILM3rA&s" alt="Home Ease">
+    </div>
+    <div style="text-align:center;">
+    <a href="{{url_for('login')}}"  class="btn btn-primary ">Login</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block title %} Search {% endblock %}
+{% block body %}
+<div class="container my-4">
+    <a href="{{ url_for('admin_dashboard') }}">
+        <button type="button" class="btn-close" aria-label="Close"></button>
+    </a>
+    <h3 class="text-center">Servicers</h3>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Service</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Verification Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if servicers %}
+            {% for servicer in servicers %}
+              <tr>
+                <th><a href="{{ url_for('servicer_details', servicer_id=servicer.id) }}">{{ loop.index }}</a></th>
+                <td>{{ servicer.user_servicer.name }}</td>
+                <td>{{ servicer.service.name}}</td>
+                <td>{{ servicer.experience }}</td>
+                <td>{%if servicer.ver_doc=='0' %}Pending
+                    {% else %}
+                    {{servicer.ver_doc}}
+                    {% endif%}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="12">No servicers available</td>
+            </tr>
+          {% endif %}
+        </tbody>
+    </table>
+    </div>
+
+    {% endblock %}

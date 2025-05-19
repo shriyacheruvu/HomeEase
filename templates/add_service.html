@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Add Service
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-5">
+    <h1 class="text-center">Add Service</h1>
+    <form class="row justify-content-center" action={{url_for('add_service')}} method = "POST">
+        <div class="mb-3 col-7">
+          <label for="name" class="form-label">Service Name</label>
+          <input type="text" class="form-control" id="name" name = "name">
+        </div>
+        <div class="mb-3 col-7">
+          <label for="description" class="form-label">Service Description</label>
+          <input type="text" class="form-control" id="description" name = "description">
+        </div>
+        <div class="mb-3 col-7">
+          <label for="base_price" class="form-label">Price(in rupees)</label>
+          <input type="text" class="form-control" id="base_price" name = "base_price">
+        </div>
+        <div class="col-7">
+            <button  type="submit" class="btn btn-primary">Add Service</button>
+        </div>
+      </form>
+</div>
+{% endblock %}

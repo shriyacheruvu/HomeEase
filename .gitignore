@@ -1,0 +1,9 @@
+__pycache__/
+envpy/
+instance/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.env
+*.pdf

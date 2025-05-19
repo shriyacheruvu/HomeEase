@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block title %}Customer Registration{% endblock %}
+
+
+{% block body %}
+
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow p-4 w-100" style="max-width: 600px;">
+    <h2 class="text-center mb-4">Customer Registration</h2>
+
+    <form action="/register_customer" method="post">
+      <div class="row">
+        <div class="mb-3 col-12">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="confirmpassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="Street, Area, etc." required>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="state" class="form-label">State</label>
+          <input type="text" class="form-control" id="state" name="state" required>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="pincode" class="form-label">Pincode</label>
+          <input type="number" class="form-control" id="pincode" name="pincode" required>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+      </div>
+
+      <div class="d-grid mt-3">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

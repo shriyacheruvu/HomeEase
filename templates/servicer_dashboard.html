@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">Welcome Servicer!</h1>
+    {% if servicer.ver_doc=='Blocked' %}
+    <h3 class="text-center"> You are blocked</h3>
+    {% else %}
+    <h2 class="text-center">Service Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Service Name</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if service_requests %}
+                {% for request in service_requests %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ request.service.name }}</td>
+                        <td>{{ request.customer.user_customer.name }}</td>
+                        <td>
+                            
+                            {% if request.status == 'Open' %}
+                               <p>Pending</p>
+                            {% elif request.status == 'Accepted' %}
+                                <p>Accepted</p>
+                            {% elif request.status == 'Rejected' %}
+                                <p>Rejected</p>
+                            {% elif request.status == 'Completed' %}
+                                <p>Completed</p>
+                            {% elif request.status == 'Closed' %}
+                                <p>Closed</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <td>
+                                {% if request.status == 'Open' %}
+                                    <form method="POST" action="{{ url_for('accept_service_request', request_id=request.id) }}" style="display: inline-block;">
+                                        <button type="submit" class="btn btn-success">Accept</button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('reject_service_request', request_id=request.id) }}" style="display: inline-block;">
+                                        <button type="submit" class="btn btn-danger">Reject</button>
+                                    </form>
+                                {% elif request.status == 'Accepted' %}
+                                    <form method="POST" action="{{ url_for('complete_service_request', request_id=request.id) }}" style="display: inline-block;">
+                                        <button type="submit" class="btn btn-primary">Complete</button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">No service requests found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div>
+        <h2 class="text-center">Closed Services with Reviews</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Review</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if reviews %}
+                {% for review in reviews %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ review.customer.user_customer.name }}</td>
+                        <td>{{ review.rating }}</td>
+                        <td>{{ review.review or 'N/A' }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No review</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
