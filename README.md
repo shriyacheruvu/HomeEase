@@ -42,7 +42,8 @@
 
 ## Database Schema
 
-*Detailed database schema will be added here.*
+![Database Schema](db.png)
+
 
 ---
 
